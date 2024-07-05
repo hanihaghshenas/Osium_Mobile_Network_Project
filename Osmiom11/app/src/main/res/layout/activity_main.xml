@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <!-- Show Location Button -->
+    <Button
+        android:id="@+id/showLocationButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Location Button"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <!-- Latitude TextView -->
+    <TextView
+        android:id="@+id/latitudeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Latitude"
+        app:layout_constraintTop_toBottomOf="@+id/showLocationButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <!-- Longitude TextView -->
+    <TextView
+        android:id="@+id/longitudeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Longitude"
+        app:layout_constraintTop_toBottomOf="@+id/latitudeTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <!-- Show ECI Button -->
+    <Button
+        android:id="@+id/showEciButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show ECI Button"
+        app:layout_constraintTop_toBottomOf="@+id/longitudeTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <!-- ECI TextView -->
+    <TextView
+        android:id="@+id/eciTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ECI Text"
+        app:layout_constraintTop_toBottomOf="@+id/showEciButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <!-- Signal Power TextView -->
+    <TextView
+        android:id="@+id/signalPowerTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Signal Power"
+        app:layout_constraintTop_toBottomOf="@+id/eciTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <!-- Search ECI Button -->
+    <Button
+        android:id="@+id/searchEciButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search ECI Button"
+        app:layout_constraintTop_toBottomOf="@+id/signalPowerTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <!-- ECI Input Layout -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/eciInputLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/searchEciButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp">
+
+        <!-- ECI Input EditText -->
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/eciInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter ECI" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
