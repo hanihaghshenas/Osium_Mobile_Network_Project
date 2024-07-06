@@ -299,7 +299,7 @@ class MainActivity : AppCompatActivity(), LocationListener {
         val x = result[0]
         val y = result[1]
 
-        // Convert Cartesian coordinates back to lat/lon
+        
         val lat = Math.toDegrees(atan2(y, sqrt(x.pow(2) + y.pow(2))))
         val lon = Math.toDegrees(atan2(y, x))
 
@@ -320,7 +320,7 @@ class MainActivity : AppCompatActivity(), LocationListener {
         )
     }
 
-    // Helper function to multiply a matrix by a vector
+    
     private fun multiplyMatrix(matrix: Array<DoubleArray>, vector: DoubleArray): DoubleArray {
         val result = DoubleArray(2)
         for (i in 0..1) {
