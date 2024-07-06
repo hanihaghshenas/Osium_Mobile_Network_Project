@@ -150,7 +150,7 @@ class MainActivity : AppCompatActivity(), LocationListener {
 
         val inputEci = eciInput.text.toString().toIntOrNull()
         if (inputEci == null) {
-            Toast.makeText(this, "Please enter a valid ECI number", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, " enter  valid ECI ", Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -246,7 +246,7 @@ class MainActivity : AppCompatActivity(), LocationListener {
         }
 
         if (locations.size >= 3) {
-            val cellLocation = trilateration(locations)
+            val cellLocation = circularlateration (locations)
             if (cellLocation != null) {
                 showLocationDialog(cellLocation.first, cellLocation.second)
             } else {
@@ -255,32 +255,80 @@ class MainActivity : AppCompatActivity(), LocationListener {
         }
     }
 
-    private fun trilateration(locations: List<Triple<Double, Double, Int>>): Pair<Double, Double>? {
-        val distances = locations.map { it.third * 39.0 }
 
-        val x1 = locations[0].first
-        val y1 = locations[0].second
-        val d1 = distances[0]
 
-        val x2 = locations[1].first
-        val y2 = locations[1].second
-        val d2 = distances[1]
+    private fun circularlateration(locations: List<Triple<Double, Double, Int>>): Pair<Double, Double> {
+        val R = 6371e3
 
-        val x3 = locations[2].first
-        val y3 = locations[2].second
-        val d3 = distances[2]
+        val (lat1, lon1, q1) = locations[0]
+        val (lat2, lon2, q2) = locations[1]
+        val (lat3, lon3, q3) = locations[2]
+        val dist1=q1*39
+        val dist2=q2*39
+        val dist3=q3*39
 
-        val a = 2 * (x2 - x1)
-        val b = 2 * (y2 - y1)
-        val c = 2 * (x3 - x1)
-        val d = 2 * (y3 - y1)
-        val e = d1.pow(2) - d2.pow(2) - x1.pow(2) + x2.pow(2) - y1.pow(2) + y2.pow(2)
-        val f = d1.pow(2) - d3.pow(2) - x1.pow(2) + x3.pow(2) - y1.pow(2) + y3.pow(2)
 
-        val y = (f - e * c / a) / (d - b * c / a)
-        val x = (e - b * y) / a
 
-        return Pair(x, y)
+        val radLat1 = Math.toRadians(lat1)
+        val radLon1 = Math.toRadians(lon1)
+        val radLat2 = Math.toRadians(lat2)
+        val radLon2 = Math.toRadians(lon2)
+        val radLat3 = Math.toRadians(lat3)
+        val radLon3 = Math.toRadians(lon3)
+
+
+        val x1 = R * cos(radLat1) * cos(radLon1)
+        val y1 = R * cos(radLat1) * sin(radLon1)
+        val x2 = R * cos(radLat2) * cos(radLon2)
+        val y2 = R * cos(radLat2) * sin(radLon2)
+        val x3 = R * cos(radLat3) * cos(radLon3)
+        val y3 = R * cos(radLat3) * sin(radLon3)
+        
+        val A = arrayOf(
+            doubleArrayOf(2 * (x2 - x1), 2 * (y2 - y1)),
+            doubleArrayOf(2 * (x3 - x1), 2 * (y3 - y1))
+        )
+        val b = doubleArrayOf(
+            dist1.toDouble().pow(2) - dist2.toDouble().pow(2) - x1.pow(2) + x2.pow(2) - y1.pow(2) + y2.pow(2),
+            dist1.toDouble().pow(2) - dist3.toDouble().pow(2) - x1.pow(2) + x3.pow(2) - y1.pow(2) + y3.pow(2)
+        )
+
+        val Ainv = inverseMatrix(A)
+        val result = multiplyMatrix(Ainv, b)
+
+        val x = result[0]
+        val y = result[1]
+
+        // Convert Cartesian coordinates back to lat/lon
+        val lat = Math.toDegrees(atan2(y, sqrt(x.pow(2) + y.pow(2))))
+        val lon = Math.toDegrees(atan2(y, x))
+
+        return Pair(lat, lon)
+    }
+
+
+    private fun inverseMatrix(matrix: Array<DoubleArray>): Array<DoubleArray> {
+        val a = matrix[0][0]
+        val b = matrix[0][1]
+        val c = matrix[1][0]
+        val d = matrix[1][1]
+        val determinant = a * d - b * c
+
+        return arrayOf(
+            doubleArrayOf(d / determinant, -b / determinant),
+            doubleArrayOf(-c / determinant, a / determinant)
+        )
+    }
+
+    // Helper function to multiply a matrix by a vector
+    private fun multiplyMatrix(matrix: Array<DoubleArray>, vector: DoubleArray): DoubleArray {
+        val result = DoubleArray(2)
+        for (i in 0..1) {
+            for (j in 0..1) {
+                result[i] += matrix[i][j] * vector[j]
+            }
+        }
+        return result
     }
 
     private fun showLocationDialog(latitude: Double, longitude: Double) {
