@@ -310,4 +310,3 @@ class MainActivity : AppCompatActivity(), LocationListener {
 
     override fun onProviderDisabled(provider: String) {}
 }
-

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <!-- Show Location Button -->
+
     <Button
         android:id="@+id/showLocationButton"
         android:layout_width="wrap_content"
@@ -18,29 +18,51 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp" />
 
-    <!-- Latitude TextView -->
+
+    <TextView
+        android:id="@+id/latitudeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Latitude:"
+        app:layout_constraintTop_toBottomOf="@+id/showLocationButton"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="8dp" />
+
+
     <TextView
         android:id="@+id/latitudeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Latitude"
+        android:text=""
         app:layout_constraintTop_toBottomOf="@+id/showLocationButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/latitudeLabel"
         android:layout_marginTop="16dp" />
 
-    <!-- Longitude TextView -->
+
+    <TextView
+        android:id="@+id/longitudeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Longitude:"
+        app:layout_constraintTop_toBottomOf="@+id/latitudeLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="8dp" />
+
+
     <TextView
         android:id="@+id/longitudeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Longitude"
+        android:text=""
         app:layout_constraintTop_toBottomOf="@+id/latitudeTextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/longitudeLabel"
         android:layout_marginTop="16dp" />
 
-    <!-- Show ECI Button -->
+
     <Button
         android:id="@+id/showEciButton"
         android:layout_width="wrap_content"
@@ -51,40 +73,73 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp" />
 
-    <!-- ECI TextView -->
+
+    <TextView
+        android:id="@+id/eciLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ECI:"
+        app:layout_constraintTop_toBottomOf="@+id/showEciButton"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="8dp" />
+
+
     <TextView
         android:id="@+id/eciTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ECI Text"
+        android:text=""
         app:layout_constraintTop_toBottomOf="@+id/showEciButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/eciLabel"
         android:layout_marginTop="16dp" />
 
-    <!-- Signal Power TextView -->
+
+    <TextView
+        android:id="@+id/signalPowerLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Signal Power:"
+        app:layout_constraintTop_toBottomOf="@+id/eciLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="8dp" />
+
+
     <TextView
         android:id="@+id/signalPowerTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Signal Power"
+        android:text=""
         app:layout_constraintTop_toBottomOf="@+id/eciTextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/signalPowerLabel"
         android:layout_marginTop="16dp" />
 
-    <!-- Timing Advance TextView -->
+
+    <TextView
+        android:id="@+id/taLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Timing Advance:"
+        app:layout_constraintTop_toBottomOf="@+id/signalPowerLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="8dp" />
+
+
     <TextView
         android:id="@+id/taTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Timing Advance"
+        android:text=""
         app:layout_constraintTop_toBottomOf="@+id/signalPowerTextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/taLabel"
         android:layout_marginTop="16dp" />
 
-    <!-- Search ECI Button -->
+
     <Button
         android:id="@+id/searchEciButton"
         android:layout_width="wrap_content"
@@ -95,7 +150,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp" />
 
-    <!-- ECI Input Layout -->
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/eciInputLayout"
         android:layout_width="0dp"
@@ -105,15 +160,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp">
 
-        <!-- ECI Input EditText -->
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/eciInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter ECI" />
+            android:hint="Enter ECI (works for both search and calculate)" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Save Info Button -->
+
     <Button
         android:id="@+id/saveInfoButton"
         android:layout_width="wrap_content"
@@ -124,7 +179,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp" />
 
-    <!-- Display Info Button -->
+
     <Button
         android:id="@+id/displayInfoButton"
         android:layout_width="wrap_content"
@@ -135,7 +190,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp" />
 
-    <!-- Clear Database Button -->
+
     <Button
         android:id="@+id/clearDatabaseButton"
         android:layout_width="wrap_content"
@@ -145,6 +200,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp" />
+
+
     <Button
         android:id="@+id/calculateEciLocationButton"
         android:layout_width="wrap_content"
