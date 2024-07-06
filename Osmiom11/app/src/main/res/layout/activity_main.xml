@@ -73,13 +73,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp" />
 
+    <!-- Timing Advance TextView -->
+    <TextView
+        android:id="@+id/taTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Timing Advance"
+        app:layout_constraintTop_toBottomOf="@+id/signalPowerTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
+
     <!-- Search ECI Button -->
     <Button
         android:id="@+id/searchEciButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Search ECI Button"
-        app:layout_constraintTop_toBottomOf="@+id/signalPowerTextView"
+        app:layout_constraintTop_toBottomOf="@+id/taTextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp" />
@@ -101,5 +112,47 @@
             android:layout_height="wrap_content"
             android:hint="Enter ECI" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Save Info Button -->
+    <Button
+        android:id="@+id/saveInfoButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save Info"
+        app:layout_constraintTop_toBottomOf="@+id/eciInputLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <!-- Display Info Button -->
+    <Button
+        android:id="@+id/displayInfoButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Display Info"
+        app:layout_constraintTop_toBottomOf="@+id/saveInfoButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <!-- Clear Database Button -->
+    <Button
+        android:id="@+id/clearDatabaseButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Clear Database"
+        app:layout_constraintTop_toBottomOf="@+id/displayInfoButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
+    <Button
+        android:id="@+id/calculateEciLocationButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calculate ECI Location"
+        app:layout_constraintTop_toBottomOf="@+id/clearDatabaseButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
